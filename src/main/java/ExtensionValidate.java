@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class ExtensionValidate {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver","src/test/Extutils/chromedriver.exe");
 
         ChromeOptions opt = new ChromeOptions();
@@ -23,7 +23,7 @@ public class ExtensionValidate {
 
         JavascriptExecutor js= (JavascriptExecutor) driver;
         driver.get("http://demo.automationtesting.in/Register.html");
-        Thread.sleep(4000);
+
         js.executeScript("window.open('');");
 
         String mainWindow = "";
@@ -33,16 +33,14 @@ public class ExtensionValidate {
                 driver.get("chrome-extension://khigmghadjljgjpamimgjjmpmlbgmekj/popup.html");
                 driver.findElement(By.xpath("//button[@id='NoteBtn']")).click();
                 driver.findElement(By.xpath("//textarea[@id='newNoteDescription']")).sendKeys("This is a test data");
-                Thread.sleep(3000);
                 driver.findElement(By.xpath("//button[@id='addNewNoteBtn']")).click();
-                Thread.sleep(3000);
+
             }
             else {
                 mainWindow = window;
             }
         }
         driver.switchTo().window(mainWindow);
-        Thread.sleep(5000);
         driver.quit();
     }
 }
